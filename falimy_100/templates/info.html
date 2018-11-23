@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% block title %}
+    详细信息
+{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block js %}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+            {#$('.modal').on('show.bs.modal', centerModals);      //当模态框出现的时候#}
+            {#$(window).on('resize', centerModals);#}
+            search = decodeURI(window.location.href)
+            name_url = search.split('/')[5]
+            $.get('/family/name_messages/'+name_url,function(data){
+                if (data.code == 200){
+                    $('.surname').text(data.message.family_name+'性之家')
+                    $('.name').text('看我'+data.message.name+'的人生态势')
+                    $('.body').attr('style','width:'+data.message.body_rate+';background-color: red;float:left;overflow:hidden;height:25px')
+                    $('.body').text(data.message.body_rate+'情况下适用于男孩名')
+                    $('.girl').attr('style','width:'+data.message.girl_rate+';background-color: green;float:left;overflow:hidden;height:25px')
+                    $('.girl').text(data.message.girl_rate+'情况下适用于男孩名')
+                    $('.disc').text(data.message.name_refer)
+                    $('.five').text(data.message.five)
+                    $('.three').text(data.message.three)
+                    $('body').attr('style','background-color:dimgray')
+                }
+            })
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <div style=";background-color: cyan;">
+            <h1 class="surname" style="color: darkblue;left: 10%;"></h1>
+            <h4 class="name" style="color: lightcyan"></h4>
+        </div>
+        <div align="center">
+
+            <div>
+                <div class="body" ></div>
+                <div class="girl"></div>
+            </div>
+            <br>
+            <div>
+                <h3 style="color: blue;width: 80%;" >名字详解</h3>
+                <div class="disc" style="width: 80%;color: lightcyan"></div>
+                <h3 style="color: blue;width: 80%;" >名字五行</h3>
+                <div class="five" style="width: 80%;color: lightcyan"></div>
+                <h3 style="color: blue;width: 80%;" >三才配置</h3>
+                <div class="three" style="width: 80%;color: lightcyan"></div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

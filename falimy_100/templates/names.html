@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+{% block title %}
+    姓名
+{% endblock %}
+{% block css %}
+<style>
+    input::-webkit-input-placeholder {
+        color: lightcyan;
+    }
+</style>
+{% endblock %}
+
+
+{% block js %}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div style="background-color: dimgray">
+        <div align="center" background-color: lightcyan">
+            <input type="text" style="width: 400px;height: 33px;font-size: 18px;background-color: dimgray; color:lightcyan;border-color: dimgray"  placeholder="请输入姓名">
+            <input type="button" value="搜索" style="width: 100px;height: 40px;font-size: 18px;background-color: lightcyan;color: black;top: 8px ;position: absolute;border-color: dimgray">
+        </div>
+        <table align="center" style="background-color: dimgray">
+            {% for names in pages %}
+                <tr align="center" >
+                    {% for name in names %}
+                        <td style="width: 100px; height: 40px ;">
+                            <table border="1"  align="center" cellspacing="0" width="90%" height="90%">
+                             <tr align="center">
+                                 <td style="background-color: lightcyan">
+                                     <a style="text-decoration: none;color: black"  href="{% url 'family:info' name %}" >{{ name }}</a>
+                                 </td>
+                             </tr>
+                             </table>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="pagenation" align="center">
+            <a style="text-decoration: none;color: black;">当前页：{{pages.number}}</a>
+            {% if pages.has_previous %}
+            <a style="text-decoration: none;color: black;" href="{% url 'family:names' surname %}?page={{pages.previous_page_number}}">上一页</a>
+            {% else %}
+            <a style="text-decoration: none;color: black;" href="#">第一页</a>
+            {% endif %}
+
+            {% for i in pages.paginator.page_range %}
+            <a style="text-decoration: none;color: black;" href="{% url 'family:names' surname %}?page={{i}}" {% ifequal i pages.number %} class="active" {% endifequal %}>{{i}}</a>
+            {% endfor %}
+
+            {% if pages.has_next %}
+            <a style="text-decoration: none;color: black;" href="{% url 'family:names' surname %}?page={{pages.next_page_number}}">下一页</a>
+            {% else %}
+            <a style="text-decoration: none;color: black;" href="#">最后一页</a>
+            {% endif %}
+            <br>
+            <br>
+        </div>
+    </div>
+{% endblock %}

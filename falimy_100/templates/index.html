@@ -1,0 +1,69 @@
+{% extends 'main.html' %}
+{% block title %}
+    姓名大全-名字大全
+{% endblock %}
+{% block css %}
+    {% load static %}
+    <link rel="Shortcut Icon" type="image/x-icon" href="http://www.resgain.net/images/favicon.ico">
+    <link rev="stylesheet" type="text/css"  href="{% static 'cs/mzdq.css_sz'%}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'cs/index.css'%}">
+
+{% endblock %}
+{% block content %}
+<div class="container" style="background-color: dimgray">
+	<div class="row">
+		<div class="col-xs-12 mx8hidden" style="text-align: center;">
+			<table class="pagination" border="1"  align="center" cellspacing="0" >
+                <tr style="background-color:lightskyblue">
+                    <td style="width: 100px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq.html">姓氏索引</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_a.html">A</a></td>
+                    <td style="width: 30px"><a  style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_b.html">B</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_c.html">C</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_d.html">D</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_e.html">E</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_f.html">F</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_g.html">G</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_h.html">H</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_j.html">J</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_k.html">K</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_l.html">L</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_m.html">M</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_n.html">N</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_o.html">O</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_p.html">P</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_q.html">Q</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_r.html">R</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_s.html">S</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_t.html">T</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_w.html">W</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_x.html">X</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_y.html">Y</a></td>
+                    <td style="width: 30px"><a style="text-decoration: none;color: black;" href="http://www.resgain.net/xmdq_z.html">Z</a></td>
+                </tr>
+
+            </table>
+		</div>
+		<div class="col-xs-12">
+         <table align="center" style="background-color: dimgray">
+             {% for items in surnames %}
+                 <tr align="center" >
+                     {% for item in items %}
+
+                         <td style="width: 170px; height: 50px ;">
+                             <table border="1"  align="center" cellspacing="0" width="90%" height="90%">
+                             <tr align="center">
+                                 <td style="background-color: lightcyan">
+                                     <a style="text-decoration: none;color: black;"  href="{% url 'family:names' item.family_name %}" title="	赵姓名字大全共有赵姓名字{{ item.number }}个">{{ item.family_name }}姓名字大全</a>
+                                 </td>
+                             </tr>
+                             </table>
+                         </td>
+                     {% endfor %}
+                 </tr>
+             {% endfor %}
+         </table>
+
+        </div>
+	</div>
+</div>
+{% endblock %}
